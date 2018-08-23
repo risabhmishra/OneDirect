@@ -12,9 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sdsmdg.tastytoast.TastyToast;
+
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by Risabh Mishra on 8/22/2018.
@@ -23,7 +24,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_view_holder> {
 
    private ArrayList<flight> arrayList;
-   Cursor cursor;
+   private ArrayList<String> booking;
 
    public flight_adapter(ArrayList<flight> ar){this.arrayList=ar;}
 
@@ -39,7 +40,7 @@ public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_v
    }
 
     @Override
-    public void onBindViewHolder(@NonNull flight_view_holder holder, int position) {
+    public void onBindViewHolder(@NonNull final flight_view_holder holder, int position) {
      int id =  Integer.parseInt(arrayList.get(position).getFlight_id());
        holder.imageView.setImageResource(pics[id]);
        holder.src.setText(arrayList.get(position).getSrc_time());
@@ -49,10 +50,8 @@ public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_v
        holder.book.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               new SweetAlertDialog(view.getContext(), SweetAlertDialog.SUCCESS_TYPE)
-                       .setTitleText("Booked!")
-                       .setContentText("Your Ticket has been sucessfully booked!")
-                       .show();
+               booking.add(holder.src.getText().toString()+"=>"+holder.dest.getText().toString()+"= ₹"+holder.price.getText().toString());
+               TastyToast.makeText(view.getContext(), "Your Ticket has been booked!", TastyToast.LENGTH_LONG, TastyToast.WARNING);
            }
        });
     }
