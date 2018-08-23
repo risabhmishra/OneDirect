@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_view_holder> {
 
    private ArrayList<flight> arrayList;
-   private ArrayList<String> booking;
+   private ArrayList<String> booking = new ArrayList<>();
 
    public flight_adapter(ArrayList<flight> ar){this.arrayList=ar;}
 
@@ -51,7 +51,7 @@ public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_v
            @Override
            public void onClick(View view) {
                booking.add(holder.src.getText().toString()+"=>"+holder.dest.getText().toString()+"= ₹"+holder.price.getText().toString());
-               TastyToast.makeText(view.getContext(), "Your Ticket has been booked!", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+               TastyToast.makeText(view.getContext(), "Your Ticket has been booked!", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
            }
        });
     }
