@@ -67,7 +67,7 @@
             android:id="@+id/passenger_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/search_button"
+            android:layout_above="@+id/number_button"
             android:layout_alignStart="@+id/date_button"
             android:fontFamily="casual"
             android:text="No. of Passengers: "
@@ -96,7 +96,7 @@
 
 
     <in.shadowfax.proswipebutton.ProSwipeButtonButton
-        android:id="@+id/search_button"
+        android:id="@+id/number_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

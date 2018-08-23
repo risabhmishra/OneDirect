@@ -1,6 +1,7 @@
 package risabhmishra.com.onedirect_flightsearch;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by Risabh Mishra on 8/22/2018.
  */
@@ -24,7 +27,6 @@ public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_v
 
    public flight_adapter(ArrayList<flight> ar){this.arrayList=ar;}
 
-    MaryPopup marypopup;
 
    int pics[] ={R.drawable.indigo,R.drawable.spicejet,R.drawable.jetairways,R.drawable.airindia};
     @NonNull
@@ -47,14 +49,9 @@ public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_v
        holder.book.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               marypopup = MaryPopup.with(context)
-                       .cancellable(true)
-                       .blackOverlayColor(Color.parseColor("#DD444444"))
-                       .backgroundColor(Color.parseColor("#EFF4F5"))
-                       .content(R.layout.popup_content)
-                       .from(clickedView)
-                       .center(true)
-                       .draggable(true)
+               new SweetAlertDialog(view.getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                       .setTitleText("Booked!")
+                       .setContentText("Your Ticket has been sucessfully booked!")
                        .show();
            }
        });
@@ -65,12 +62,7 @@ public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_v
         return arrayList.size();
     }
 
-    @Override
-    public void onBackPressed() {
-        if(!marypopup.close(true)){
-            super.onBackPressed();
-        }
-    }
+
     public class flight_view_holder extends RecyclerView.ViewHolder{
 
        ImageView imageView,img2;
@@ -89,4 +81,6 @@ public class flight_adapter extends RecyclerView.Adapter<flight_adapter.flight_v
             book = (Button)itemView.findViewById(R.id.bu_book);
         }
     }
+
+
 }
